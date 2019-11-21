@@ -3,9 +3,9 @@
 This repository contains an SDK for writing Python strategies for the margin application
 found at [margin.io]().
 
-This package is available for Python 3.7 or higher through pip
+This package is available for Python 3.6 or higher through pip
 ```
-pip install git+git://github.com/MarginOpenSource/strategy-sdk.git
+pip install margin-strategy-sdk
 ```
 
 You can import all classes and functions in your strategy by calling
