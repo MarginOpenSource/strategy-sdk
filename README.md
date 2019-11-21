@@ -13,6 +13,10 @@ You can import all classes and functions in your strategy by calling
 from margin_strategy_sdk import *
 ```
 
+**Note: The SDK does not provide any functionalities but merely mimics margin's strategy 
+development interface. To actually run your strategy you need to start it from the margin 
+application.**
+
 The easiest way to start off your strategy implementation is by cloning the strategy
 template found at https://github.com/MarginOpenSource/strategy-template.
 
