@@ -8,18 +8,18 @@ class Candle:
     """
 
     def __init__(self) -> None:
-        # Price of the first trade in the candle.
-        self.in_value = None
+        # Price of the last trade in the candle.
+        self.close = None
         # Highest traded price in the candle.
-        self.max = None
+        self.high = None
+        # Lowest traded price in the candle.
+        self.low = None
         # Time of the latest trade in the candle or closing time of the candle.
         self.max_time = None
-        # Lowest traded price in the candle.
-        self.min = None
         # Start time of the candle.
         self.min_time = None
-        # Price of the last trade in the candle.
-        self.out_value = None
+        # Price of the first trade in the candle.
+        self.open = None
         # Number of trades included in the candle.
         self.trade_number = None
         # Volume traded within the candle.
