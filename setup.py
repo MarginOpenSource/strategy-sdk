@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="margin_strategy_sdk",
-    version="0.0.4",
+    version="0.0.5",
     author="Margin UG",
     author_email="contact@margin.io",
     description="Margin Strategy Editor SDK",

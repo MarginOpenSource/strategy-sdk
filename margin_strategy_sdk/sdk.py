@@ -91,6 +91,8 @@ class Order:
         self.buy = None
         # Id of the order.
         self.id = None
+        # Type of the order.
+        self.order_type = None
         # Price of the order.
         self.price = None
         # Amount that has been filled already.
@@ -241,6 +243,8 @@ class StrategyConfig:
     TICKER = DataSubscriptionType.TICKER
 
     def __init__(self) -> None:
+        # Some exchanges subtract fees of buy orders from the base currency which results in receiving less than specified in the order.margin can normalize all the amount related values in orders and trades to represent the actually received amounts.This is activated by setting this value to True / deactivated by setting it to False. (Default: True)
+        self.normalize_exchange_buy_amounts = None
         # This set should contain all the data types that are required by the strategy, as only the specified ones will be updated.
         self.required_data_updates = None
 
@@ -259,6 +263,12 @@ class TradingCapabilityManager:
     def get_max_buy_amount(self, price: float) -> float:
         """
         Returns the maximally possible buy amount that can be placed at a given price.
+        """
+        return None
+
+    def get_max_buy_price(self, amount: float) -> float:
+        """
+        Returns the maximally possible buy price that can be placed at a given amount.
         """
         return None
 
@@ -304,9 +314,9 @@ class TradingCapabilityManager:
         """
         return None
 
-    def is_order_valid(self, buy: bool, amount: float, price: float) -> bool:
+    def is_limit_order_valid(self, buy: bool, amount: float, price: float) -> bool:
         """
-        Checks whether the order consisting of buy/sell side, price and amount could be placed as it is. If this returns false, you need to adapt the rounding of the amount or price or check that the amount is in the range of min/max amount for the selected side.
+        Checks whether the limit order consisting of buy/sell side, price and amount could be placed as it is. If this returns false, you need to adapt the rounding of the amount or price or check that the amount is in the range of min/max amount for the selected side.
         """
         return None
 
@@ -462,19 +472,25 @@ class StrategyBase:
 
     def on_place_order_error_string(self, order_placing_id: int, error_message: str) -> None:
         """
-        This function is called when an order has could not be placed correctly. You can identify the order using the order_placing_id which is returned by the place_order function.
+        This function is called when an order has could not be placed correctly. You can identify the order using the order_placing_id which is returned by the place_order functions.
         """
         return None
 
     def on_place_order_success(self, order_placing_id: int, order: Order) -> None:
         """
-        This function is called after an order has been placed successfully. You can identify the order using the order_placing_id which is returned by the place_order function.
+        This function is called after an order has been placed successfully. You can identify the order using the order_placing_id which is returned by the place_order functions.
         """
         return None
 
     def place_limit_order(self, buy: bool, amount: float, price: float) -> int:
         """
-        Use this function to place an order. The return value is the order placing id. Either on_place_order_success or on_place_order_error_string will be called with the order placing id, when the the placing action is done.
+        Use this function to place a limit order. The return value is the order placing id. Either on_place_order_success or on_place_order_error_string will be called with the order placing id, when the the placing action is done.
+        """
+        return None
+
+    def place_market_order(self, buy: bool, amount: float) -> int:
+        """
+        Use this function to place a market/spot order. The return value is the order placing id. Either on_place_order_success or on_place_order_error_string will be called with the order placing id, when the the placing action is done.
         """
         return None
 
