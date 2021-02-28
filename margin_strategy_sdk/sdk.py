@@ -374,9 +374,9 @@ class StrategyBase:
         """
         return None
 
-    def get_buffered_recent_candles(self, candle_size_in_minutes: int, number_of_candles: int = 50) -> List[Candle]:
+    def get_buffered_recent_candles(self, candle_size_in_minutes: int, number_of_candles: int = 50, include_current_building_candle: bool = False) -> List[Candle]:
         """
-        Use this function to instantly get a list of the most recent candles. The argument candle_size_in_minutes has to be given.
+        Use this function to instantly get a list of the most recent candles. The argument candle_size_in_minutes has to be given. If you want the currently building cancel (last in the chart) to be included, also specify the include_current_building_candle flag set to True.
         """
         return None
 
