@@ -20,3 +20,4 @@ jobs:
         with:
           token: ${{ secrets.PUSH_TO_PROTECTED_BRANCH }}
           unprotect_reviews: true
+          tags: true
