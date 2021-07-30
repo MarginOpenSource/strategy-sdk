@@ -12,8 +12,8 @@ jobs:
         uses: jaumann/github-bumpversion-action@v0.0.7
         env:
           GITHUB_TOKEN: ${{ secrets.PUSH_TO_PROTECTED_BRANCH }}
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - name: Push to protected branch
+        uses: CasperWA/push-protected@v2
         with:
-          github_token: ${{ secrets.PUSH_TO_PROTECTED_BRANCH }}
-          tags: true
+          token: ${{ secrets.PUSH_TO_PROTECTED_BRANCH }}
+          unprotect_reviews: true
